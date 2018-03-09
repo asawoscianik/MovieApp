@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html ng-app="myApp">
+
+<head>
+    <title>Movies Lists App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/app.js"></script>
+</head>
+
+<body ng-controller="CategoriesCtrl">
+    <div id="arrow-container" class="open-menu-arrow-container">
+        <img id="arrow" class="open-menu-arrow" src="assets/arrow.png">
+    </div>
+
+    <div class="categories-bar" id="categories">
+        <!-- <div class="logo"></div> -->
+        <div class="add">
+            <h1 class="ccategory">ADD YOUR CUSTOM CATEGORY:</h1>
+            <input class="add-category-input" ng-minlength="1" placeholder="e.g. to watch" ng-model="category.name">
+            <button class="update-category-btn" ng-show="updateBtnShw" ng-click="updateCategory()">RENAME</button>
+            <button class="add-category-btn" ng-show="updateBtnHde" ng-click="addCategory()">ADD</button>
+        </div>
+        <ul>
+            <a href="#/list">
+                <li ng-repeat="category in categoryList | filter:category.name">
+                    <p ng-click="selectCategory(category.name, category._id)" class="category-text">{{$index+1}}. {{category.name}}</p>
+                    <img class="wheel" src="assets/wheel.png" alt="wheel" ng-click="editCategory(category._id)">
+                    <img class="trash" src="assets/trash.png" alt="trashcan" ng-click="removeCategory(category._id)">
+                </li>
+            </a>
+        </ul>
+        <img class="scroll-down" src="assets/scroll.png">
+    </div>
+    <div ng-show="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <main ng-view></main>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.js"></script>
+    <script src="controllers/categories.controller.js"></script>
+
+</body>
+
+</html>

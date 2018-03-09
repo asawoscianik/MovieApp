@@ -1,0 +1,27 @@
+<div ng-show="loader" class="loader-container">
+    <div class="loader"></div>
+</div>
+<div class="movie-list-container">
+    <div class="search-movie-container">
+        <h1 class="category-name" ng-model="currentCategory">Add to <span class="current-category-font">{{currentCategory}}</span></h1>
+        <input class="search-movie-input" type="text" placeholder="Type movie title you'r looking for:" ng-model="title">
+        <img class="loupe" src="../assets/search.svg" ng-click="searchMovie(title)">
+    </div>
+    <p ng-show="movieAddAlert" class="green-alert">Movie added to:
+        <span class="alert-category-font">{{currentCategory}}</span>
+    </p>
+    <p ng-show="movieExist" class="red-alert">Movie already exist in
+        <span class="alert-category-font">{{currentCategory}}</span>
+    </p>
+    <ul class="movies-list">
+        <li class="movie-li" ng-repeat="movie in foundMovies">
+            <img class="poster" alt="poster" src='{{movie.Poster}}'>
+            <br>
+            <p ng-model="movie">{{movie.Title}}
+                <br>
+                <span class="movie-year">{{movie.Year}}</span>
+            </p>
+            <span ng-click="addMovieToCategory(movie)" class="add-movie">+</span>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,30 @@
+<div ng-show="movieListContainer" class="movie-list-container">
+    <div class="category-name-container">
+        <p class="category-name" ng-model="currentCategory">{{currentCategory}}</p>
+        <label class="filter-movies-container">
+            <input class="filter-movies" ng-model="movie.to.filter" placeholder="Search in: {{currentCategory}}" type="text">
+            <img class="loupe" src="../assets/search.svg">
+        </label>
+    </div>
+    <p ng-show="movieDeleteAlert" class="green-alert">Movie deleted from:
+        <span class="alert-category-font">{{currentCategory}}</span>
+    </p>
+    <ul class="movies-list">
+        <li class="go-to-search-container">
+            <a class="go-to-search-text" href="#/search">+</a>
+        </li>
+
+        <li class="movie-li" ng-repeat="movie in movieList | filter:movie.to.filter">
+            <span class="delete-movie" ng-click="deleteMovie(movie,movie.imdbID); refreshMovieList()">
+                <img class="trash" src="../assets/trash.png">
+            </span>
+            <img class="poster" alt="poster" src='{{movie.Poster}}'>
+            <br>
+            <p ng-model="movie">{{movie.Title}}
+                <br>
+                <span class="movie-year">{{movie.Year}}</span>
+            </p>
+        </li>
+
+    </ul>
+</div>
